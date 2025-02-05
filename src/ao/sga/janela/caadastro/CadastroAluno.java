@@ -25,7 +25,7 @@ public class CadastroAluno extends javax.swing.JFrame {
         initComponents();
     }
     
-    public CadastroAluno(ArrayList<Turma> turmas, JFrame janela ) {
+    public CadastroAluno(ArrayList<Turma> turmas, JFrame janela) {
         initComponents();
         this.janela = janela;
         this.turmas = turmas;

@@ -4,9 +4,12 @@
  */
 package ao.sga.janela.caadastro;
 
-import java.awt.event.WindowListener;
+import ao.sga.modelo.Disc;
+import ao.sga.modelo.Prof;
+import ao.sga.modelo.Turma;
 import java.util.ArrayList;
-import ao.sga.modelo.*;
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 
 /**
  *
@@ -14,19 +17,37 @@ import ao.sga.modelo.*;
  */
 public class CadastroProf extends javax.swing.JFrame {
 
+            ArrayList<Turma> turmas = null;
+            JFrame janela = null;
     /**
      * Creates new form CadastroProf
      */
     public CadastroProf() {
         initComponents();
     }
-    public CadastroProf(ArrayList<Turma> turmas) {
-        this.turmas = turmas;
-        System.out.println(" AQUIIIII"+turmas);
+    
+    public CadastroProf(ArrayList<Turma> turmas, JFrame janela) {
         initComponents();
+        this.janela = janela;
+        this.turmas = turmas;
+        
+        comboboxTurmasCadastroProf.removeAllItems();
+        turmas.forEach((t) -> {
+            comboboxTurmasCadastroProf.addItem(t.getName());
+        });
+        
+        comboboxTurmasCadastroProf.addActionListener((ae) -> {
+            popularListaAluno(comboboxTurmasCadastroProf.getSelectedIndex());
+        });
     }
-
-
+    
+    private void popularListaAluno(int index)
+    {
+        comboboxDisciplinssCadastroProf.removeAllItems();
+        turmas.get(index).getDisc().forEach((t) -> {
+            comboboxDisciplinssCadastroProf.addItem(t.getName());
+        });
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,156 +57,221 @@ public class CadastroProf extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        jPanel1 = new javax.swing.JPanel();
+        comboboxTurmasCadastroProf = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextNameCadProf = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextDataNasProf = new javax.swing.JTextField();
+        nomeCadastroProf = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        userNameCadastroProf = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        passwordCadastroProf = new javax.swing.JTextField();
+        btnGuardarCadastroProf = new javax.swing.JButton();
+        btnSairCadastroProf = new javax.swing.JButton();
+        comboboxDisciplinssCadastroProf = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jTextemailProf = new javax.swing.JTextField();
-        jTextPassworProf = new javax.swing.JTextField();
+        dataCadastroProf = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jBtnCadastrarProf = new javax.swing.JButton();
-
-        jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(153, 153, 153));
 
-        jLabel1.setFont(new java.awt.Font("Impact", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
+        comboboxTurmasCadastroProf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel5.setText("Disciplina");
+
         jLabel1.setText("Cadastro de Professores");
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Impact", 1, 17)); // NOI18N
         jLabel2.setText("Nome");
 
-        jTextNameCadProf.setBackground(new java.awt.Color(255, 255, 255));
-        jTextNameCadProf.addActionListener(new java.awt.event.ActionListener() {
+        nomeCadastroProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextNameCadProfActionPerformed(evt);
+                nomeCadastroProfActionPerformed(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Impact", 1, 17)); // NOI18N
-        jLabel5.setText("Dada de nascimento");
+        jLabel3.setText("Username");
 
-        jTextDataNasProf.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel6.setFont(new java.awt.Font("Impact", 1, 17)); // NOI18N
-        jLabel6.setText("Email");
-
-        jTextemailProf.setBackground(new java.awt.Color(255, 255, 255));
-        jTextemailProf.addActionListener(new java.awt.event.ActionListener() {
+        userNameCadastroProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextemailProfActionPerformed(evt);
+                userNameCadastroProfActionPerformed(evt);
             }
         });
 
-        jTextPassworProf.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Password");
 
-        jLabel7.setFont(new java.awt.Font("Impact", 1, 17)); // NOI18N
-        jLabel7.setText("Password");
-
-        jBtnCadastrarProf.setBackground(new java.awt.Color(0, 51, 255));
-        jBtnCadastrarProf.setFont(new java.awt.Font("Impact", 1, 16)); // NOI18N
-        jBtnCadastrarProf.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnCadastrarProf.setText("Cadastrar");
-        jBtnCadastrarProf.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jBtnCadastrarProf.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
-        jBtnCadastrarProf.addActionListener(new java.awt.event.ActionListener() {
+        passwordCadastroProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnCadastrarProfActionPerformed(evt);
+                passwordCadastroProfActionPerformed(evt);
             }
         });
+
+        btnGuardarCadastroProf.setText("Guardar");
+        btnGuardarCadastroProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarCadastroProfActionPerformed(evt);
+            }
+        });
+
+        btnSairCadastroProf.setText("Sair");
+        btnSairCadastroProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairCadastroProfActionPerformed(evt);
+            }
+        });
+
+        comboboxDisciplinssCadastroProf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel6.setText("Turma");
+
+        dataCadastroProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataCadastroProfActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Data de nascimento");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(userNameCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboboxTurmasCadastroProf, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboboxDisciplinssCadastroProf, 0, 382, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnSairCadastroProf, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                                .addComponent(btnGuardarCadastroProf, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                                .addComponent(dataCadastroProf))
+                            .addComponent(passwordCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(123, 123, 123)
+                            .addComponent(jLabel1))
+                        .addComponent(nomeCadastroProf, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addContainerGap(370, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel6))
+                .addGap(15, 15, 15)
+                .addComponent(comboboxTurmasCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(comboboxDisciplinssCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userNameCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(passwordCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dataCadastroProf, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnGuardarCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSairCadastroProf)
+                .addGap(33, 33, 33))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(12, 12, 12)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(54, 54, 54)
+                    .addComponent(nomeCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(306, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7)
-                        .addGap(76, 76, 76))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextNameCadProf, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextDataNasProf, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextPassworProf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextemailProf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
-                        .addGap(89, 89, 89))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(jBtnCadastrarProf, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jLabel1)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextNameCadProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextemailProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextDataNasProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextPassworProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(jBtnCadastrarProf, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextNameCadProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNameCadProfActionPerformed
+    private void nomeCadastroProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeCadastroProfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextNameCadProfActionPerformed
+    }//GEN-LAST:event_nomeCadastroProfActionPerformed
 
-    private void jTextemailProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextemailProfActionPerformed
+    private void userNameCadastroProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameCadastroProfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextemailProfActionPerformed
+    }//GEN-LAST:event_userNameCadastroProfActionPerformed
 
-    private void jBtnCadastrarProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCadastrarProfActionPerformed
+    private void passwordCadastroProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordCadastroProfActionPerformed
         // TODO add your handling code here:
-        String nome = jTextNameCadProf.getText().toString();
-        String email = jTextemailProf.getText().toString();
-        String data = jTextDataNasProf.getText().toString();
-        String password = jTextPassworProf.getText().toString();
-        
-        
+    }//GEN-LAST:event_passwordCadastroProfActionPerformed
 
+    private void btnGuardarCadastroProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCadastroProfActionPerformed
 
+        if (!userNameCadastroProf.getText().isEmpty() &&
+            !passwordCadastroProf.getText().isEmpty() &&
+            !dataCadastroProf.getText().isEmpty() &&
+            !nomeCadastroProf.getText().isEmpty())
+        {
+            Turma turma = turmas.get(comboboxTurmasCadastroProf.getSelectedIndex());
+            Disc d = turma.getDisc().get(comboboxDisciplinssCadastroProf.getSelectedIndex());
+            d.AddProf(new Prof(nomeCadastroProf.getText(), dataCadastroProf.getText(), userNameCadastroProf.getText(), passwordCadastroProf.getText()));
+            passwordCadastroProf.setText("");
+            nomeCadastroProf.setText("");
+            userNameCadastroProf.setText("");
+            dataCadastroProf.setText("");
+        }
+    }//GEN-LAST:event_btnGuardarCadastroProfActionPerformed
 
-    }//GEN-LAST:event_jBtnCadastrarProfActionPerformed
+    private void btnSairCadastroProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairCadastroProfActionPerformed
+        janela.setVisible(true);
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSairCadastroProfActionPerformed
+
+    private void dataCadastroProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataCadastroProfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dataCadastroProfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,7 +299,6 @@ public class CadastroProf extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CadastroProf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -223,21 +308,22 @@ public class CadastroProf extends javax.swing.JFrame {
         });
     }
 
-
-    ArrayList<Turma> turmas;
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBtnCadastrarProf;
+    private javax.swing.JButton btnGuardarCadastroProf;
+    private javax.swing.JButton btnSairCadastroProf;
+    private javax.swing.JComboBox<String> comboboxDisciplinssCadastroProf;
+    private javax.swing.JComboBox<String> comboboxTurmasCadastroProf;
+    private javax.swing.JTextField dataCadastroProf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextDataNasProf;
-    private javax.swing.JTextField jTextNameCadProf;
-    private javax.swing.JTextField jTextPassworProf;
-    private javax.swing.JTextField jTextemailProf;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField nomeCadastroProf;
+    private javax.swing.JTextField passwordCadastroProf;
+    private javax.swing.JTextField userNameCadastroProf;
     // End of variables declaration//GEN-END:variables
 }

@@ -41,6 +41,7 @@
                           <Component id="btnCadastroAlunoAdmin" min="-2" pref="243" max="-2" attributes="0"/>
                           <Component id="btnCadastrarTurmaAdmin" min="-2" pref="243" max="-2" attributes="0"/>
                           <Component id="btnSairAdmin1" min="-2" pref="243" max="-2" attributes="0"/>
+                          <Component id="btnCadastrarDisciplinaAdmin1" min="-2" pref="243" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -62,8 +63,10 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnCadastrarTurmaAdmin" min="-2" pref="47" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnSairAdmin1" min="-2" pref="47" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="btnCadastrarDisciplinaAdmin1" min="-2" pref="47" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnSairAdmin1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -109,6 +112,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSairAdmin1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCadastrarDisciplinaAdmin1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cadastrar Disciplina"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarDisciplinaAdmin1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

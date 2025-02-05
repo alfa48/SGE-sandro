@@ -7,6 +7,7 @@ package ao.sga.login;
 import ao.sga.janela.init.Main;
 import ao.sga.modelo.Turma;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +16,9 @@ import javax.swing.JOptionPane;
  */
 public class LoginProfessor extends javax.swing.JFrame {
 
-    ArrayList<Turma> turmas = null;
+        ArrayList<Turma> turmas = null;
+        JFrame janela = null;
+
     /**
      * Creates new form LoginProfessor
      */
@@ -23,10 +26,13 @@ public class LoginProfessor extends javax.swing.JFrame {
         initComponents();
     }
     
-       public LoginProfessor(ArrayList<Turma> turmas) {
+    public LoginProfessor(ArrayList<Turma> turmas, JFrame janela) {
         initComponents();
+        this.janela = janela;
         this.turmas = turmas;
     }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -110,8 +116,8 @@ public class LoginProfessor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(passwordProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnLogarAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLogarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnInicioAdmin)
                 .addGap(26, 26, 26))
         );

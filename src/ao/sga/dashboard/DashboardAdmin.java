@@ -5,8 +5,11 @@
 package ao.sga.dashboard;
 
 import ao.sga.janela.caadastro.CadastroAluno;
+import ao.sga.janela.caadastro.CadastroDisciplica;
+import ao.sga.janela.caadastro.CadastroProf;
 import ao.sga.janela.caadastro.CadastroTurma;
 import ao.sga.janela.init.Main;
+import ao.sga.modelo.Disc;
 import ao.sga.modelo.Turma;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -48,6 +51,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         btnCadastroAlunoAdmin = new javax.swing.JButton();
         btnCadastrarTurmaAdmin = new javax.swing.JButton();
         btnSairAdmin1 = new javax.swing.JButton();
+        btnCadastrarDisciplinaAdmin1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +87,13 @@ public class DashboardAdmin extends javax.swing.JFrame {
             }
         });
 
+        btnCadastrarDisciplinaAdmin1.setText("Cadastrar Disciplina");
+        btnCadastrarDisciplinaAdmin1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarDisciplinaAdmin1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,7 +113,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
                             .addComponent(btnCadastrarProfAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCadastroAlunoAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCadastrarTurmaAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSairAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnSairAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCadastrarDisciplinaAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -119,15 +131,20 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnCadastrarTurmaAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnSairAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnCadastrarDisciplinaAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSairAdmin1)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarProfAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProfAdminActionPerformed
-        // TODO add your handling code here:
+        CadastroProf telaCProf = new CadastroProf(turmas, this);
+        telaCProf.setVisible(true);
+        this.setVisible(false);        
+// TODO add your handling code here:
     }//GEN-LAST:event_btnCadastrarProfAdminActionPerformed
 
     private void btnCadastrarTurmaAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarTurmaAdminActionPerformed
@@ -149,6 +166,13 @@ public class DashboardAdmin extends javax.swing.JFrame {
         this.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCadastroAlunoAdminActionPerformed
+
+    private void btnCadastrarDisciplinaAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarDisciplinaAdmin1ActionPerformed
+        CadastroDisciplica telaCDisc = new CadastroDisciplica(turmas, this);
+        telaCDisc.setVisible(true);
+        this.setVisible(false);
+    // TODO add your handling code here:
+    }//GEN-LAST:event_btnCadastrarDisciplinaAdmin1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,6 +211,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadastrarDisciplinaAdmin1;
     private javax.swing.JButton btnCadastrarProfAdmin;
     private javax.swing.JButton btnCadastrarTurmaAdmin;
     private javax.swing.JButton btnCadastroAlunoAdmin;

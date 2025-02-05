@@ -17,7 +17,6 @@ import ao.sga.modelo.Turma;
 
 import ao.sga.login.LoginAdmin;
 import ao.sga.login.LoginAluno;
-import ao.sga.login.LoginProf;
 import ao.sga.login.LoginProfessor;
 import java.util.ArrayList;
 
@@ -117,7 +116,7 @@ public class Main extends javax.swing.JFrame {
 
         if (turmas != null)
         {
-            LoginProfessor telaLoginProf = new LoginProfessor(turmas);
+            LoginProfessor telaLoginProf = new LoginProfessor(turmas, this);
             telaLoginProf.setVisible(true);
             this.dispose();
         }
@@ -191,6 +190,15 @@ public class Main extends javax.swing.JFrame {
         Disc discNew4 = new Disc("Aritme'tica4", "Emenda o que e' isso?");
         Disc discNew5 = new Disc("Aritme'tica5", "Emenda o que e' isso?");
 
+        
+        /*
+        add disc->
+                  [selec] turma: recebe     disc
+        
+        add prof ->
+                    [selec] turma, [selec] disc: recebem professor
+        
+        */
         
         Prof profNew = new Prof("SandroA", "01/03/1987", "sandroa", "123");
         discNew.AddProf(profNew);discNew1.AddProf(profNew);

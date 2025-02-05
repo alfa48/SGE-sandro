@@ -2,13 +2,14 @@ package ao.sga.modelo;
 
 import java.util.ArrayList;
 public class Disc {
-    private int id;
+    private static int id;
     private String name, emenda;
     private ArrayList<Prof>  profs;
     private ArrayList<Aluno> alunos;
     private ArrayList<RendEscola> rendEscolar;
 
     public Disc(String name, String emenda) {
+        this.id = this.id + 1;
         this.name = name;
         this.emenda = emenda;
         this.alunos = new ArrayList<Aluno>(); 
