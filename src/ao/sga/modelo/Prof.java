@@ -17,7 +17,6 @@ public class Prof {
     
     public Prof(String name, String date, String username, String password)
     {
-
         this.name = name;
         this.password = password;
         this.cargo = "PROFESSOR";
@@ -98,8 +97,8 @@ public class Prof {
         discs.add(disc);
     }
     public void AddTurma(Turma turma) {
-
-        turmas.add(turma);
+        if(!turmas.contains(turma))
+            turmas.add(turma);
     }
 
     public void mostraTodos(int k){

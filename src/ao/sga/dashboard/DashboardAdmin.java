@@ -34,6 +34,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         initComponents();
         this.turmas = turmas;
         this.janela = janela;
+        System.out.println(">>>>>>>>> ao.sga.dashboard.DashboardAdmin.<init>()");
     }
 
     /**
@@ -55,7 +56,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Bem Vinda Adminstrador do Sistema");
+        jLabel1.setText("Bem Vindo Adminstrador do Sistema");
 
         jLabel2.setText("SGE-SANDRO");
 

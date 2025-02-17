@@ -118,7 +118,8 @@ public class Main extends javax.swing.JFrame {
         {
             LoginProfessor telaLoginProf = new LoginProfessor(turmas, this);
             telaLoginProf.setVisible(true);
-            this.dispose();
+            this.setVisible(false);
+            //this.dispose();
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -131,9 +132,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        LoginAluno telaLoginAluno = new LoginAluno();
+        LoginAluno telaLoginAluno = new LoginAluno(turmas, this);
         telaLoginAluno.setVisible(true);
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -200,19 +201,28 @@ public class Main extends javax.swing.JFrame {
         
         */
         
-        Prof profNew = new Prof("SandroA", "01/03/1987", "sandroa", "123");
-        discNew.AddProf(profNew);discNew1.AddProf(profNew);
-        turmaNew.AddProf(profNew);
+        
+        /*
+            professor ->
+                        [selec] Turmas : mostra -> Disciplinas
+        
+        professor ->
+                        [selec] Turmas [selec] Disciplinas: mostra -> alunos add-> notas
+        */
+        
+        //Prof profNew = new Prof("SandroA", "01/03/1987", "sandroa", "123");
+        //discNew.AddProf(profNew);discNew1.AddProf(profNew);
+        //turmaNew.AddProf(profNew);
         turmas.add(turmaNew);
         
-        Prof profNew1 = new Prof("SandroB", "01/04/1987", "sandrob", "124");
-        discNew2.AddProf(profNew1);discNew3.AddProf(profNew1);
-        turmaNew1.AddProf(profNew1);
+        //Prof profNew1 = new Prof("SandroB", "01/04/1987", "sandrob", "124");
+        //discNew2.AddProf(profNew1);discNew3.AddProf(profNew1);
+        //turmaNew1.AddProf(profNew1);
         turmas.add(turmaNew1);
 
-        Prof profNew2 = new Prof("SandroC", "01/05/1987", "sandroC", "125");
-        discNew4.AddProf(profNew2);discNew5.AddProf(profNew2);
-        turmaNew2.AddProf(profNew2);
+        //Prof profNew2 = new Prof("SandroC", "01/05/1987", "sandroC", "125");
+        //discNew4.AddProf(profNew2);discNew5.AddProf(profNew2);
+        //turmaNew2.AddProf(profNew2);
         turmas.add(turmaNew2);
         
       

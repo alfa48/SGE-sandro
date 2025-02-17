@@ -4,7 +4,10 @@
  */
 package ao.sga.login;
 
+import ao.sga.dashboard.DashboardProf;
+import ao.sga.janela.caadastro.CadastroProf;
 import ao.sga.janela.init.Main;
+import ao.sga.modelo.Prof;
 import ao.sga.modelo.Turma;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -131,30 +134,33 @@ public class LoginProfessor extends javax.swing.JFrame {
 
     private void btnLogarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarAdminActionPerformed
             int rs = 0;
+            Prof prof = null;
+
             ArrayList<ao.sga.modelo.Prof> profs = new ArrayList<ao.sga.modelo.Prof>();
             turmas.forEach((t) -> {
-                profs.addAll(t.getProf());
+                t.getDisc().forEach((d) -> {
+                    profs.addAll(d.getProf());
+                });
             });
-            
-            if(usernameProfessor != null && passwordProfessor != null && profs != null)
-           {
-               for(ao.sga.modelo.Prof p : profs)
-               {
-                  if(p.getUsername().equals(usernameProfessor.getText()) &&
-                          p.getPassword().equals(passwordProfessor.getText()))
-                          rs = 1;                  
-               }
-               if (rs == 1)
-                   JOptionPane.showMessageDialog(rootPane, "LOGADO!");
-               else
-                   JOptionPane.showMessageDialog(rootPane, "NAO LOGADO!");
-           }
-        
+          
+            for (Prof p : profs) {
+                if(p.getUsername().equals(usernameProfessor.getText()) &&
+                    p.getPassword().equals(passwordProfessor.getText()))
+                {
+                    JOptionPane.showMessageDialog(rootPane, "LOGADO!");
+                    DashboardProf telaCProf = new DashboardProf(turmas, this, p);
+                    System.out.println(">>>>>>>>: "+p.getTurma().get(0).getName());
+                    telaCProf.setVisible(true);
+                    this.setVisible(false);
+                    return ;
+                }
+            }
+            JOptionPane.showMessageDialog(rootPane, "NAO LOGADO!");
+            usernameProfessor.setText("");passwordProfessor.setText("");
     }//GEN-LAST:event_btnLogarAdminActionPerformed
 
     private void btnInicioAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioAdminActionPerformed
-        Main telaInit = new Main();
-        telaInit.setVisible(true);
+        janela.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnInicioAdminActionPerformed
 

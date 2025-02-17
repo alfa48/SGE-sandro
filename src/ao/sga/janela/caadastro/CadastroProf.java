@@ -8,8 +8,8 @@ import ao.sga.modelo.Disc;
 import ao.sga.modelo.Prof;
 import ao.sga.modelo.Turma;
 import java.util.ArrayList;
-import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,10 +30,25 @@ public class CadastroProf extends javax.swing.JFrame {
         initComponents();
         this.janela = janela;
         this.turmas = turmas;
+        jComboBoxProfessoresCadastroProfessor.setSelectedIndex(-1);
+        comboboxDisciplinssCadastroProf.setSelectedIndex(-1);
+        comboboxTurmasCadastroProf.setSelectedIndex(-1);
         
         comboboxTurmasCadastroProf.removeAllItems();
+        comboboxTurmasCadastroProf.addItem(null);
         turmas.forEach((t) -> {
             comboboxTurmasCadastroProf.addItem(t.getName());
+        });
+        
+        //popular com todos os professores cadastrados 
+        jComboBoxProfessoresCadastroProfessor.removeAllItems();
+        jComboBoxProfessoresCadastroProfessor.addItem(null);
+        turmas.forEach((t) -> {
+            t.getDisc().forEach((d) -> {
+                d.getProf().forEach((p) -> {
+                   jComboBoxProfessoresCadastroProfessor.addItem(p.getName()); 
+                });
+            });
         });
         
         comboboxTurmasCadastroProf.addActionListener((ae) -> {
@@ -44,9 +59,18 @@ public class CadastroProf extends javax.swing.JFrame {
     private void popularListaAluno(int index)
     {
         comboboxDisciplinssCadastroProf.removeAllItems();
-        turmas.get(index).getDisc().forEach((t) -> {
+        comboboxDisciplinssCadastroProf.addItem(null);
+        turmas.get(index - 1).getDisc().forEach((t) -> {
             comboboxDisciplinssCadastroProf.addItem(t.getName());
         });
+    }
+
+    private Prof getProfSelected()
+    {
+        return (turmas
+                .get(comboboxTurmasCadastroProf.getSelectedIndex() - 1)
+                .getProf()
+                .get(jComboBoxProfessoresCadastroProfessor.getSelectedIndex() - 1));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,6 +97,8 @@ public class CadastroProf extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         dataCadastroProf = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jComboBoxProfessoresCadastroProfessor = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,6 +158,10 @@ public class CadastroProf extends javax.swing.JFrame {
 
         jLabel7.setText("Data de nascimento");
 
+        jComboBoxProfessoresCadastroProfessor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel8.setText("Professor");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -140,80 +170,87 @@ public class CadastroProf extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(userNameCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboboxTurmasCadastroProf, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboboxDisciplinssCadastroProf, 0, 382, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(userNameCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnSairCadastroProf, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                                .addComponent(btnGuardarCadastroProf, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                                .addComponent(dataCadastroProf))
-                            .addComponent(passwordCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(123, 123, 123)
-                            .addComponent(jLabel1))
-                        .addComponent(nomeCadastroProf, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addContainerGap(370, Short.MAX_VALUE)))
+                            .addComponent(dataCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel4)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(btnGuardarCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSairCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(31, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(passwordCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(218, 218, 218)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBoxProfessoresCadastroProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(nomeCadastroProf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboboxTurmasCadastroProf, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboboxDisciplinssCadastroProf, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6))
-                .addGap(15, 15, 15)
-                .addComponent(comboboxTurmasCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboboxTurmasCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxProfessoresCadastroProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(comboboxDisciplinssCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userNameCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(comboboxDisciplinssCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)))
+                    .addComponent(nomeCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userNameCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(passwordCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dataCadastroProf, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnGuardarCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSairCadastroProf)
-                .addGap(33, 33, 33))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(12, 12, 12)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(54, 54, 54)
-                    .addComponent(nomeCadastroProf, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(306, Short.MAX_VALUE)))
+                .addComponent(dataCadastroProf)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSairCadastroProf, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(btnGuardarCadastroProf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -221,14 +258,15 @@ public class CadastroProf extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         pack();
@@ -251,16 +289,34 @@ public class CadastroProf extends javax.swing.JFrame {
         if (!userNameCadastroProf.getText().isEmpty() &&
             !passwordCadastroProf.getText().isEmpty() &&
             !dataCadastroProf.getText().isEmpty() &&
-            !nomeCadastroProf.getText().isEmpty())
+            !nomeCadastroProf.getText().isEmpty() &&
+            comboboxDisciplinssCadastroProf.getSelectedIndex() >= 0 &&
+            comboboxTurmasCadastroProf.getSelectedIndex() >= 0)
         {
-            Turma turma = turmas.get(comboboxTurmasCadastroProf.getSelectedIndex());
-            Disc d = turma.getDisc().get(comboboxDisciplinssCadastroProf.getSelectedIndex());
-            d.AddProf(new Prof(nomeCadastroProf.getText(), dataCadastroProf.getText(), userNameCadastroProf.getText(), passwordCadastroProf.getText()));
+            Prof p = new Prof(nomeCadastroProf.getText(), dataCadastroProf.getText(), userNameCadastroProf.getText(), passwordCadastroProf.getText());
+            Turma turma = turmas.get(comboboxTurmasCadastroProf.getSelectedIndex() - 1);
+            p.AddTurma(turma);
+            Disc d = turma.getDisc().get(comboboxDisciplinssCadastroProf.getSelectedIndex() - 1);
+            d.AddProf(p);
             passwordCadastroProf.setText("");
             nomeCadastroProf.setText("");
             userNameCadastroProf.setText("");
             dataCadastroProf.setText("");
         }
+        else if (jComboBoxProfessoresCadastroProfessor.getSelectedIndex() >= 0)
+        {
+            
+            Prof p = getProfSelected();
+            if (p == null)
+                return ;
+            Turma turma = turmas.get(comboboxTurmasCadastroProf.getSelectedIndex() - 1);
+            p.AddTurma(turma);
+            Disc d = turma.getDisc().get(comboboxDisciplinssCadastroProf.getSelectedIndex() - 1);
+            d.AddProf(p);
+        }
+        else
+            JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos "+comboboxTurmasCadastroProf.getSelectedIndex());
+
     }//GEN-LAST:event_btnGuardarCadastroProfActionPerformed
 
     private void btnSairCadastroProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairCadastroProfActionPerformed
@@ -314,6 +370,7 @@ public class CadastroProf extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboboxDisciplinssCadastroProf;
     private javax.swing.JComboBox<String> comboboxTurmasCadastroProf;
     private javax.swing.JTextField dataCadastroProf;
+    private javax.swing.JComboBox<String> jComboBoxProfessoresCadastroProfessor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -321,6 +378,7 @@ public class CadastroProf extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nomeCadastroProf;
     private javax.swing.JTextField passwordCadastroProf;

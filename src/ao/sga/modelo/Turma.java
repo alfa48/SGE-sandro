@@ -3,7 +3,7 @@ package ao.sga.modelo;
 import java.util.ArrayList;
 
 public class Turma {
-    private static int id;
+    private  int id;
     private ArrayList<Disc> discs;
     private ArrayList<Aluno> alunos;
     private ArrayList<Prof> profs;
@@ -11,7 +11,6 @@ public class Turma {
     private int cap;
 
     public Turma(int cap, String name) {
-        id = id + 1;
         this.name = name;
         this.cap = cap;
         this.discs = new ArrayList<Disc>();
@@ -68,6 +67,9 @@ public class Turma {
     }
     
     public void AddAluno(Aluno aluno){
+        discs.forEach((d) -> {
+            aluno.addDisc(new Disc(d.getName(), d.getEmenda()));
+        });
         alunos.add(aluno);
     }
     
@@ -79,6 +81,14 @@ public class Turma {
     public void AddDisc(Disc disc) {
 
         discs.add(disc);
+        updateDiscAluno(disc);
+    }
+    
+    private void updateDiscAluno(Disc d)
+    {
+        alunos.forEach((a) -> {
+            a.discs.add(d);
+        });
     }
 
     public void RemoverDisc(int idd) {

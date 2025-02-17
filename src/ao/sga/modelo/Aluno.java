@@ -4,19 +4,18 @@ import java.util.ArrayList;
 
 public class Aluno  {
 
-    private static int id;
+    private int id;
     private String name;
     private String cargo;
     private String username;
     private String password;
     private String date;
     private Turma turma;
-    private RendEscola rendEscolar;
+    private RendEscola rendEscolar;//esquece
     public ArrayList<Disc> discs;
 
     
     public Aluno(String name, String username, String password) {
-        this.id = this.id + 1;
         this.name = name;
         this.password = password;
         this.username = username;

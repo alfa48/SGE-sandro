@@ -137,13 +137,13 @@ public class LoginAdmin extends javax.swing.JFrame {
             if (rs == 1)
             {
                 JOptionPane.showMessageDialog(rootPane, "LOGADO!");
-                usernameAdmin.setText("");passwordAdmin.setText("");
                 DashboardAdmin telaDashAdmin = new DashboardAdmin(turmas, this);
                 telaDashAdmin.setVisible(true);
                 this.setVisible(false);
             }
             else
                 JOptionPane.showMessageDialog(rootPane, "CREDENCIAIS INVA'LIDA!");
+            usernameAdmin.setText("");passwordAdmin.setText("");
            
         
         

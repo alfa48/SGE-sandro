@@ -3,20 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/util/UtilSGE.java</file>
+            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/modelo/Admin.java</file>
             <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/login/LoginProfessor.java</file>
-            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/modelo/Disc.java</file>
-            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/login/LoginAdmin.java</file>
-            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/login/LoginProf.java</file>
+            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/dashboard/DashboardProf.java</file>
+            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/modelo/Aluno.java</file>
             <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/dashboard/DashboardAdmin.java</file>
-            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/janela/init/Main.java</file>
+            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/modelo/Prof.java</file>
+            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/janela/caadastro/CadastroNota.java</file>
+            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/modelo/RendEscola.java</file>
             <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/janela/caadastro/CadastroProf.java</file>
             <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/janela/lista/AlunosLista.java</file>
-            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/janela/caadastro/CadastroTurma.java</file>
-            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/modelo/Turma.java</file>
-            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/modelo/Aluno.java</file>
-            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/modelo/Prof.java</file>
+            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/login/LoginAdmin.java</file>
             <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/janela/caadastro/CadastroAluno.java</file>
+            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/janela/caadastro/DashBoardAluno.java</file>
+            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/modelo/Turma.java</file>
+            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/modelo/Disc.java</file>
+            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/janela/caadastro/CadastroDisciplica.java</file>
+            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/janela/init/Main.java</file>
+            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/login/LoginAluno.java</file>
+            <file>file:/home/alfa-97/NetBeansProjects/SGES/src/ao/sga/janela/caadastro/CadastroTurma.java</file>
         </group>
     </open-files>
 </project-private>

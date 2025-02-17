@@ -31,6 +31,9 @@ public class CadastroDisciplica extends javax.swing.JFrame {
         this.janela = janela;
         this.turmas = turmas;
         
+                System.out.println(">>>>>>>>> ao.sga.dashboard.DashboardAdmin.<init>()");
+
+        
         comboboxTurmasCadastroDisciplina.removeAllItems();
         turmas.forEach((t) -> {
             comboboxTurmasCadastroDisciplina.addItem(t.getName());

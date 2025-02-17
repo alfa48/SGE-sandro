@@ -4,7 +4,15 @@
  */
 package ao.sga.login;
 
+import ao.sga.dashboard.DashboardProf;
+import ao.sga.janela.caadastro.DashBoardAluno;
 import ao.sga.janela.init.Main;
+import ao.sga.modelo.Aluno;
+import ao.sga.modelo.Prof;
+import ao.sga.modelo.Turma;
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -13,11 +21,20 @@ import ao.sga.janela.init.Main;
  */
 public class LoginAluno extends javax.swing.JFrame {
 
+        ArrayList<Turma> turmas = null;
+        JFrame janela = null;
+
     /**
      * Creates new form LoginAluno
      */
     public LoginAluno() {
         initComponents();
+    }
+    
+    public LoginAluno(ArrayList<Turma> turmas, JFrame janela) {
+        initComponents();
+        this.janela = janela;
+        this.turmas = turmas;
     }
 
     /**
@@ -55,6 +72,11 @@ public class LoginAluno extends javax.swing.JFrame {
         jLabel3.setText("Password");
 
         btnLogarAluno.setText("Logar");
+        btnLogarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogarAlunoActionPerformed(evt);
+            }
+        });
 
         btnInicioAluno.setText("Inicio");
         btnInicioAluno.addActionListener(new java.awt.event.ActionListener() {
@@ -111,10 +133,35 @@ public class LoginAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameAlunoActionPerformed
 
     private void btnInicioAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioAlunoActionPerformed
-        Main telaInit = new Main();
-        telaInit.setVisible(true);
+        janela.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnInicioAlunoActionPerformed
+
+    private void btnLogarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarAlunoActionPerformed
+        int rs = 0;
+        Aluno aluno = null;
+
+        ArrayList<Aluno> alunos = new ArrayList<Aluno>();
+        turmas.forEach((t) -> {
+            alunos.addAll(t.getAluno());
+        });
+          
+            for (Aluno a : alunos) {
+                if(a.getUsername().equals(usernameAluno.getText()) &&
+                    a.getPassword().equals(passwordAluno.getText()))
+                {
+                    JOptionPane.showMessageDialog(rootPane, "LOGADO!");
+                    DashBoardAluno telaCProf = new DashBoardAluno(turmas, this, a);
+                    System.out.println("Aluno: >>>>>>>>: "+a.getName());
+                    telaCProf.setVisible(true);
+                    this.setVisible(false);
+                    return ;
+                }
+            }
+            JOptionPane.showMessageDialog(rootPane, "NAO LOGADO!");
+            usernameAluno.setText("");passwordAluno.setText("");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogarAlunoActionPerformed
 
     /**
      * @param args the command line arguments

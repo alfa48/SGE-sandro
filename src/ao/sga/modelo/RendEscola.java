@@ -43,7 +43,7 @@ public class RendEscola {
            this.Ntrab[1] = Ntrab;
        }
        public double getNtrab3() {
-        return this.Ntrab[2];
+            return this.Ntrab[2];
        }
        public void setNtrab3(double Ntrab) {
            this.Ntrab[2] = Ntrab;
